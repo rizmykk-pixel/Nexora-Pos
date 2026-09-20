@@ -47,6 +47,9 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/nexova-release.jks"
           chmod 600 "$RUNNER_TEMP/nexova-release.jks"
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Build signed production AAB
         env:
           NEXOVA_SUPABASE_URL: ${{ vars.NEXOVA_SUPABASE_URL }}
