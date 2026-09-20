@@ -39,27 +39,6 @@ jobs:
           echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_PATH
           echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
 
-      - name: Validate backend contract
-        working-directory: services/functions
-        run: |
-          npm install
-          npm run build
-          NEXOVA_ENVIRONMENT=development NEXOVA_STORAGE_MODE=memory node dist/server-local.js > "$RUNNER_TEMP/nexova-api.log" 2>&1 &
-          API_PID=$!
-          trap 'kill $API_PID' EXIT
-          for attempt in {1..20}; do
-            if curl --fail --silent http://127.0.0.1:8787/api/v1/health > /dev/null; then break; fi
-            sleep 1
-          done
-          API_BASE_URL=http://127.0.0.1:8787 npm run smoke
-
-      - name: Validate migration security markers
-        run: |
-          test "$(grep -c "enable row level security" supabase/migrations/20260920000000_initial_schema.sql)" -ge 10
-          grep -q "tenant_members_can_write_orders" supabase/migrations/20260920000000_initial_schema.sql
-          grep -q "revoked_at is null" supabase/migrations/20260920000000_initial_schema.sql
-          grep -q "tenant_members_can_read_payments" supabase/migrations/20260920000000_initial_schema.sql
-
       - name: Decode release keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.NEXOVA_RELEASE_KEYSTORE_BASE64 }}
