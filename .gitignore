@@ -1,0 +1,46 @@
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.aab.md
+
+# Gradle
+.gradle/
+build/
+local.properties
+.gradle
+
+# Android Studio
+.idea/
+*.iml
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Supabase
+.supabase/
+
+# Keystore
+*.jks
+*.keystore
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Documentation generated files
+keystore/
+nexova-keystores/
