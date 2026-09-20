@@ -1,0 +1,13 @@
+name = "nexova-pos-backend"
+main = "services/functions/dist/worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+NEXOVA_ENVIRONMENT = "production"
+NEXOVA_STORAGE_MODE = "supabase"
+MIDTRANS_BASE_URL = "https://api.midtrans.com"
+
+# Environment variables will be set via wrangler secret command
+# SUPABASE_URL (set to https://cwpexozhvncweaanlxsf.supabase.co)
+# SUPABASE_SERVICE_ROLE_KEY (NEEDS TO BE UPDATED WITH ACTUAL SERVICE ROLE KEY)
+# MIDTRANS_SERVER_KEY (set to production key)

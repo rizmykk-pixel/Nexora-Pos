@@ -1,0 +1,23 @@
+{
+  "name": "nexova-pos",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "services/shared",
+    "services/functions",
+    "services/web"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev:web": "npm --prefix services/web run dev",
+    "build:backend": "tsc -p services/functions/tsconfig.json",
+    "dev:backend": "node services/functions/dist/server-local.js",
+    "migrate": "node services/functions/scripts/migrate.js",
+    "smoke:backend": "node services/functions/scripts/smoke-test.mjs",
+    "test:rls": "node services/functions/scripts/test-rls.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

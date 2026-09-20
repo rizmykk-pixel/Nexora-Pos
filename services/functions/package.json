@@ -1,0 +1,16 @@
+{
+  "name": "nexova-pos-functions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "watch": "tsc -p tsconfig.json --watch",
+    "dev": "node dist/server-local.js",
+    "smoke": "node scripts/smoke-test.mjs",
+    "test-rls": "node scripts/test-rls.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0"
+  }
+}
